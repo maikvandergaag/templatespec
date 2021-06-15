@@ -44,6 +44,8 @@ jobs:
        - uses: actions/download-artifact@v2
          with:
              name: dist-without-markdown
+       - name: directory
+         run: ls -R
        - name: Azure Login
          uses: Azure/login@v1
          with:
