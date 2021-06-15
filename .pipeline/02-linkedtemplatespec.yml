@@ -13,7 +13,9 @@ variables:
     value: westeurope
     
 trigger:
-  - main
+  branches:
+    include:
+    - main
   paths:
     include:
     - 02-linkedtemplatespec
