@@ -1,0 +1,70 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "webAppName": {
+            "type": "string",
+            "defaultValue": "[concat('webApp-', uniqueString(resourceGroup().id))]",
+            "minLength": 2,
+            "metadata": {
+                "description": "Web app name."
+            }
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+                "description": "Specify the location for the resources."
+            }
+        },
+        "accountName": {
+            "type": "string",
+            "metadata": {
+                "description": "The account name"
+            }
+        }
+    },
+    "variables": {
+        "appServicePlanName": "[concat('plan', uniquestring(resourceGroup().id))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-10-01",
+            "name": "createWebApp",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "relativePath": "resources/webapp.json"
+                },
+                "parameters": {
+                    "sku": {
+                        "value": "F1"
+                    },
+                    "linuxFxVersion": {
+                        "value": "DOTNETCORE|3.0"
+                    },
+                    "webAppName": {
+                        "value": "[parameters('webAppName')]"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-10-01",
+            "name": "createStorage",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "relativePath": "resources/storage.json"
+                },
+                "parameters": {
+                    "storageAccountType": {
+                        "value": "[parameters('accountName')]"
+                    }
+                }
+            }
+        }
+    ]
+}
