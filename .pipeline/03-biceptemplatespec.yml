@@ -6,20 +6,25 @@ variables:
   - name: bicep
     value: $(installPath)\bicep.exe
   - name: filepathbase
-    value: 01-/001-webapp-insights
+    value: 03-biceptemplatespec/03-biceptemplatespec
   - name: filepath
     value: $(filepathbase).bicep
   - name: filepathArm
     value: $(filepathbase).json
   - name: templateSpecName
-    value: az-tempspec-webappinsights
+    value: az-tempspec-bicepwebapp
   - name: resourcegroupname
-    value: sb-templatespecs
+    value: sponsor-rg-templatespecs
   - name: location
     value: westeurope
     
 trigger:
-  - main
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - 03-biceptemplatespec
   
 pool:
   vmImage: windows-2019
