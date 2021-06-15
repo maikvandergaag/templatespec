@@ -1,4 +1,4 @@
-name: CI
+name: 04-bicepmoduletemplatespec
  
 # Controls when the action will run. 
 on:
@@ -55,6 +55,6 @@ jobs:
          uses: Azure/cli@1.0.4
          with:
            # Specify the script here
-           inlineScript: az ts create --name 04-bicepmoduletemplatespec-githubaction --version "1.0a" --resource-group sponsor-rg-templatespecs --location "westeurope" --template-file "./04-bicepmoduletemplatespec/04-bicepmoduletemplatespec.json"
+           inlineScript: az ts create --name az-tempspec-bicepmodulestorage-github --version "1.0" --resource-group sponsor-rg-templatespecs --location "westeurope" --template-file "./04-bicepmoduletemplatespec/04-bicepmoduletemplatespec.json"
 
  
