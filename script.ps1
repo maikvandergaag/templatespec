@@ -4,8 +4,9 @@ Login-AzAccount
 $resourcegroup = "sponsor-rg-templatespecs";
 $rgDeploy = "sponsor-rg-templatespecs-deploy" 
 $location = "westeurope"
-$versionnumber = "1.1"
+$versionnumber = "1.2"
 
+New-AzResourceGroup -Name $resourcegroup -Location $location -Force
 New-AzResourceGroup -Name $rgDeploy -Location $location -Force
 
 #01
@@ -32,5 +33,8 @@ bicep build ".\04-bicepmoduletemplatespec\04-bicepmoduletemplatespec.bicep"
 New-AzTemplateSpec -Name "az-tempspec-bicepmodulestorage" -Version "$versionnumber" -ResourceGroupName "$resourcegroup" -Location "$location" -TemplateFile ".\04-bicepmoduletemplatespec\04-bicepmoduletemplatespec.json"
 
 $id = (Get-AzTemplateSpec -Name az-tempspec-bicepmodulestorage -ResourceGroupName $resourcegroup -Version $versionnumber).Versions.Id
-New-AzResourceGroupDeployment -ResourceGroupName $rgDeploy -TemplateSpecId $id
+New-AzResourceGroupDeployment -ResourceGroupName $rgDeploy -TemplateSpecId $id 
+
+#05
+New-AzResourceGroupDeployment -ResourceGroupName $rgDeploy -TemplateFile ".\05-module\05-module.json" -Confirm
 
