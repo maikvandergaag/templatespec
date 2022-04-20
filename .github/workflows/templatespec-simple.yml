@@ -12,7 +12,7 @@ on:
 
 env:
   specName: az-tempspec-webapp
-  specfolder: './templatespecs/01-simpletemplatespec/01-simpletemplatespec'
+  specfolder: './templatespecs/01-simpletemplatespec/'
   specfilename: 01-simpletemplatespec.json
   resourcegroup: sponsor-rg-templatespecs
 
