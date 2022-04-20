@@ -14,7 +14,7 @@ on:
 
 env:
   specName: az-tempspec-certifiedstorage
-  specfolder: './templatespec/05-certifiedstorage/05-storage'
+  specfolder: './templatespecs/05-certifiedstorage/05-storage'
   specfilename: 05-storage.json
   resourcegroup: sponsor-rg-templatespecs
 jobs:
