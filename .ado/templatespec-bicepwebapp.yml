@@ -11,7 +11,7 @@ variables:
   - name: fileName
     value: "03-biceptemplatespec"
   - name: serviceConnection
-    value: "az-template-specs"
+    value: "Subscription Sponsorship"
   - name: specName
     value: "az-tempspec-bicepwebapp"
   - name: resourceGroup

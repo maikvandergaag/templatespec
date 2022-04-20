@@ -9,7 +9,7 @@ variables:
   - name: fileName
     value: "01-simpletemplatespec"
   - name: serviceConnection
-    value: "az-template-specs"
+    value: "Subscription Sponsorship"
   - name: specName
     value: "az-tempspec-webapp"
   - name: resourceGroup
