@@ -60,7 +60,7 @@
                     "relativePath": "resources/storage.json"
                 },
                 "parameters": {
-                    "storageAccountType": {
+                    "accountName": {
                         "value": "[parameters('accountName')]"
                     }
                 }

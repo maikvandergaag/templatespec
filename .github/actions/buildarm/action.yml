@@ -1,0 +1,22 @@
+name: "Build ARM Template"
+description: "Composite actions of building ARM files and saving them to the archive."
+inputs:
+  specFolder:
+    description: 'Specification folder'
+    required: true
+  specName:
+    description: 'Specification name'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{inputs.specName}}
+        path: ${{inputs.specFolder}}.json
+    - name: Archive production scripts
+      uses: actions/upload-artifact@v2
+      with:
+        name: ps-${{inputs.specName}}
+        path: ./utilities/*.ps1

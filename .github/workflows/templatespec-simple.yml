@@ -1,0 +1,44 @@
+name: TS - Simple Template Spec
+
+on:
+  push:
+    paths:
+      - 'templatespecs/01-simpletemplatespec/*'
+      - .github/workflows/templatespec-simple.yml
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  specName: az-tempspec-webapp
+  specfolder: './templatespecs/01-simpletemplatespec/01-simpletemplatespec'
+  specfilename: 01-simpletemplatespec.json
+  resourcegroup: sponsor-rg-templatespecs
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - id: bicepbuild
+        uses: ./.github/actions/buildarm
+        with:
+          specFolder: ${{env.specfolder}}
+          specName: ${{env.specName}}
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v2
+       - id: deployspec
+         uses: ./.github/actions/deploytemplatespec
+         with:
+           specFolder: ${{env.specfolder}}
+           specName: ${{env.specName}}
+           resourceGroup: ${{env.resourcegroup}}
+           specFileName : ${{env.specfilename}}
+           clientId: ${{ secrets.AZURE_CLIENT_ID }}
+           clientSecret: ${{ secrets.AZURE_CLIENT_SECRET }}
+           tenantId: ${{ secrets.AZURE_TENANT_ID }}
+           azureSubscription: f124b668-7e3d-4b53-ba80-09c364def1f3
