@@ -1,0 +1,28 @@
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - name: bicepPath
+    value: "$(Build.Repository.LocalPath)/templatespecs/02-linkedtemplatespec"
+  - name: fileName
+    value: "02-linkedtemplatespec"
+  - name: serviceConnection
+    value: "az-template-specs"
+  - name: specName
+    value: "az-tempspec-linkedtemplate"
+  - name: resourceGroup
+    value: "sponsor-rg-templatespecs"
+  - name: subscription
+    value: "f124b668-7e3d-4b53-ba80-09c364def1f3"
+
+extends:
+  template: templates/stages-specs-arm.yml
+  parameters:
+    bicepFolder: '$(bicepFolder)'
+    fileName: '$(fileName)'
+    serviceConnection: '$(serviceConnection)'
+    specName: '$(specName)'
+    resourceGroup: '$(resourceGroup)'
+    subscription: '$(subscription)'

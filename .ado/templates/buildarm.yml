@@ -1,0 +1,21 @@
+parameters:
+- name : bicepPath
+  default: ''
+
+steps:
+  - task: CopyFiles@2
+    displayName: "Copy - files"
+    inputs:
+      SourceFolder: ${{parameters.bicepPath}}
+      TargetFolder: '$(Build.ArtifactStagingDirectory)\template'
+  - task: CopyFiles@2
+    displayName: "Copy - utility scripts"
+    inputs:
+      SourceFolder: $(Build.Repository.LocalPath)\utilities
+      TargetFolder: '$(Build.ArtifactStagingDirectory)\utilities'
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish - Artifacts"
+    inputs:
+      PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+      ArtifactName: "drop"
+      publishLocation: "Container"
