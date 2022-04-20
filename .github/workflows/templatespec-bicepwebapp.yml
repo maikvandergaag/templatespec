@@ -1,28 +1,28 @@
-name: TS - Linked Template
-
+name: TS - Bicep WebApp
 on:
   push:
     paths:
-      - 'templatespecs/02-linkedtemplatespec/*'
-      - .github/workflows/templatespec-linked.yml
+      - 'templatespecs/03-biceptemplatespec/*'
+      - .github/workflows/templatespec-bicepwebapp.yml
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 env:
-  specName: az-tempspec-webapp
-  specfolder: './templatespecs/02-linkedtemplatespec/'
-  specfilename: 02-linkedtemplatespec.json
+  specName: az-tempspec-bicepwebapp
+  specfolder: './templatespecs/03-biceptemplatespec/03-biceptemplatespec'
+  specfilename: 03-biceptemplatespec.json
   resourcegroup: sponsor-rg-templatespecs
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - id: bicepbuild
-        uses: ./.github/actions/buildarm
+        uses: ./.github/actions/buildbicep
         with:
           specFolder: ${{env.specfolder}}
           specName: ${{env.specName}}
