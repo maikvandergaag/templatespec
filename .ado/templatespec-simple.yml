@@ -20,7 +20,7 @@ variables:
 extends:
   template: templates/stages-specs-arm.yml
   parameters:
-    bicepFolder: '$(bicepFolder)'
+    bicepPath: '$(bicepPath)'
     fileName: '$(fileName)'
     serviceConnection: '$(serviceConnection)'
     specName: '$(specName)'
