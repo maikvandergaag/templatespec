@@ -42,7 +42,7 @@ $id = (Get-AzTemplateSpec -Name az-tempspec-bicepwebapp -ResourceGroupName $reso
 New-AzResourceGroupDeployment -ResourceGroupName $rgDeploy -TemplateSpecId $id
 
 #04
-bicep build ".\templatespecs\04-bicepmoduletemplatespec\04-bicepmoduletemplatespec.bicep"
+#bicep build ".\templatespecs\04-bicepmoduletemplatespec\04-bicepmoduletemplatespec.bicep"
 New-AzTemplateSpec -Name "az-tempspec-bicepmodulestorage" `
              -Version "$versionnumber" `
              -ResourceGroupName "$resourcegroup" `
@@ -50,6 +50,16 @@ New-AzTemplateSpec -Name "az-tempspec-bicepmodulestorage" `
              -TemplateFile ".\templatespecs\04-bicepmoduletemplatespec\04-bicepmoduletemplatespec.bicep"
 
 $id = (Get-AzTemplateSpec -Name az-tempspec-bicepmodulestorage -ResourceGroupName $resourcegroup -Version $versionnumber).Versions.Id
+New-AzResourceGroupDeployment -ResourceGroupName $rgDeploy -TemplateSpecId $id
+
+#certified storgage
+New-AzTemplateSpec -Name "az-tempspec-certifiedstorage" `
+             -Version "$versionnumber" `
+             -ResourceGroupName "$resourcegroup" `
+             -Location "$location" `
+             -TemplateFile ".\templatespecs\05-certifiedstorage\05-storage.bicep"
+
+$id = (Get-AzTemplateSpec -Name az-tempspec-certifiedstorage -ResourceGroupName $resourcegroup -Version $versionnumber).Versions.Id
 New-AzResourceGroupDeployment -ResourceGroupName $rgDeploy -TemplateSpecId $id
 
 #05

@@ -7,13 +7,11 @@
     Author: Maik van der Gaag
     Date: 22-06-2021
 
-
 .PARAMETER TemplateSpecName
     The name of the template spec
 
 .PARAMETER ResourceGroupName
     The name of the resource group for the specs
-
 
 .EXAMPLE
     .\Get-TemplateSpecVersion.ps1 -TemplateSpecName "tempspec" -ResourceGroupName "rg-test"

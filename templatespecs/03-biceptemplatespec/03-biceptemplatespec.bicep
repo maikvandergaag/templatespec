@@ -1,10 +1,11 @@
 param skuName string = 'S1'
 param skuCapacity int = 1
 param location string = resourceGroup().location
-param appServicePlanName string
-param websiteName string
-param appInsightsName string
-param logAnalyticsName string
+
+var websiteName = 'webapp-${uniqueString(resourceGroup().id)}'
+var appInsightsName = 'insights-${uniqueString(resourceGroup().id)}'
+var logAnalyticsName = 'la-${uniqueString(resourceGroup().id)}'
+var appServicePlanName = 'hosting-${uniqueString(resourceGroup().id)}'
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
   name: appServicePlanName
