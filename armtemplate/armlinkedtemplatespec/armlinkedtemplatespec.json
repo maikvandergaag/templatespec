@@ -1,0 +1,40 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "specrg": {
+            "type": "string",
+            "defaultValue": "sponsor-rg-templatespecs",
+            "metadata": {
+                "description": "The name of the template spec resource group."
+            }
+        },
+        "accountName": {
+            "type": "string",
+            "metadata": {
+                "description": "The name for the storage account"
+            }
+        }
+    },
+    "variables": {
+        "tsURI": "[resourceId(parameters('specrg'),'Microsoft.Resources/templateSpecs/versions', 'az-tempspec-linkedtemplate', '1.2')]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-10-01",
+            "name": "module",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "id": "[variables('tsURI')]"
+                },
+                "parameters": {
+                    "accountName": {
+                        "value": "[parameters('accountName')]"
+                    }
+                }
+            }
+        }
+    ]
+}
