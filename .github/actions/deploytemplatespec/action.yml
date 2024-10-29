@@ -49,16 +49,18 @@ runs:
            azPSVersion: latest
            inlineScript: |
              Get-AzResourceGroup | ft 
+             $version = .\Get-TemplateSpecVersion.ps1 -TemplateSpecName "${{env.specName}}" -ResourceGroupName "${{inputs.resourceGroup}}"
+             Write-Host "Version: $version"
        - name: Check versionnumber
          uses: azure/powershell@v2
          id: calculate
          with:
            inlineScript: |
               .\Get-TemplateSpecVersion.ps1 -TemplateSpecName "${{env.specName}}" -ResourceGroupName "${{inputs.resourceGroup}}"
-           azPSVersion: '6.1.0'
+           azPSVersion: latest
        - name: Create / Update template spec
          uses: azure/powershell@v2
          with:
            inlineScript: |
             New-AzTemplateSpec -Name "${{inputs.specName}}" -Version "${{ steps.calculate.outputs.versionnumber }}" -ResourceGroupName "${{inputs.resourceGroup}}" -Location "westeurope" -TemplateFile ".\${{inputs.specFileName}}"
-           azPSVersion: '6.1.0'
+           azPSVersion: latest
