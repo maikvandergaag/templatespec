@@ -12,6 +12,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+permissions:
+  id-token: write
+
 env:
   specName: az-tempspec-certifiedstorage
   specfolder: './templatespecs/05-certifiedstorage/05-storage'
@@ -21,7 +24,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - id: bicepbuild
         uses: ./.github/actions/buildbicep
         with:
@@ -31,7 +34,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-       - uses: actions/checkout@v2
+       - uses: actions/checkout@v4
        - id: deployspec
          uses: ./.github/actions/deploytemplatespec
          with:

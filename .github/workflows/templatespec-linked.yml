@@ -10,6 +10,9 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  id-token: write
+
 env:
   specName: az-tempspec-webapp
   specfolder: './templatespecs/02-linkedtemplatespec/'
@@ -20,7 +23,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - id: bicepbuild
         uses: ./.github/actions/buildarm
         with:
@@ -30,7 +33,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-       - uses: actions/checkout@v2
+       - uses: actions/checkout@v4
        - id: deployspec
          uses: ./.github/actions/deploytemplatespec
          with:
