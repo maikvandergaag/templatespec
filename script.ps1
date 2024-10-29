@@ -1,5 +1,5 @@
 #Login to the correct azure subscription
-Login-AzAccount
+Connect-AzAccount
 
 $subscription = "f124b668-7e3d-4b53-ba80-09c364def1f3"
 $resourcegroup = "sponsor-rg-templatespecs";

@@ -10,7 +10,7 @@ param storageName string = 'azstrdeploytest'
 param location string = resourceGroup().location
 
 // Use storage module
-module automation 'ts/TemplateSpecs:az-tempspec-certifiedstorage:0.2' ={
+module automation 'ts/TemplateSpecs:az-tempspec-certifiedstorage:1.2' ={
   name: 'certifiedstorage'
   params:{
     storageName: storageName
