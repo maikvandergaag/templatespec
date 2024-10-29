@@ -16,8 +16,8 @@ permissions:
 
 env:
   specName: az-tempspec-bicepmodulestorage
-  specfolder: './templatespecs/04-bicepmoduletemplatespec/04-bicepmoduletemplatespec'
-  specfilename: 04-bicepmoduletemplatespec.json
+  specfolder: './templatespecs/04-bicepmoduletemplatespec/'
+  specfilename: 04-bicepmoduletemplatespec.biceo
   resourcegroup: gaag-rg-specs
 jobs:
   build:
@@ -29,6 +29,7 @@ jobs:
         with:
           specFolder: ${{env.specfolder}}
           specName: ${{env.specName}}
+          specFileName : ${{env.specfilename}}
   deploy:
     environment: prod
     needs: build
