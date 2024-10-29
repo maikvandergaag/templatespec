@@ -19,7 +19,7 @@ env:
   specName: az-tempspec-certifiedstorage
   specfolder: './templatespecs/05-certifiedstorage/05-storage'
   specfilename: 05-storage.json
-  resourcegroup: sponsor-rg-templatespecs
+  resourcegroup: gaag-rg-specs
 jobs:
   build:
     runs-on: ubuntu-latest

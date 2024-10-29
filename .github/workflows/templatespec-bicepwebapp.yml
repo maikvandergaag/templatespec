@@ -18,7 +18,7 @@ env:
   specName: az-tempspec-bicepwebapp
   specfolder: './templatespecs/03-biceptemplatespec/03-biceptemplatespec'
   specfilename: 03-biceptemplatespec.json
-  resourcegroup: sponsor-rg-templatespecs
+  resourcegroup: gaag-rg-specs
 jobs:
   build:
     runs-on: ubuntu-latest

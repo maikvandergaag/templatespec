@@ -17,7 +17,7 @@ env:
   specName: az-tempspec-webapp
   specfolder: './templatespecs/02-linkedtemplatespec/'
   specfilename: 02-linkedtemplatespec.json
-  resourcegroup: sponsor-rg-templatespecs
+  resourcegroup: gaag-rg-specs
 
 jobs:
   build:
