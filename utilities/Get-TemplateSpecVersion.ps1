@@ -47,10 +47,6 @@ process {
     }
 
     Write-Output "New versionnumber will be: $($versionNumber)"
-    if ($ADO) {
-        Write-Host "##vso[task.setvariable variable=versionnumber]$versionNumber"
-    }
-    else {
-        echo "::set-output name=versionnumber::$versionNumber"
-    }
+    
+    return $versionNumber
 }
