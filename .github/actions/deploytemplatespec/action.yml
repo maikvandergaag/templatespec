@@ -43,25 +43,11 @@ runs:
            tenant-id: ${{ inputs.tenantId }}
            subscription-id: ${{ inputs.azureSubscription }}
            enable-AzPSSession: true
-       - name: List Resource Groups
+       - name: Upload Template Spec
          uses: azure/powershell@v2
          with:
            azPSVersion: latest
            inlineScript: |
-             Get-AzResourceGroup | ft 
              $version = .\Get-TemplateSpecVersion.ps1 -TemplateSpecName "${{env.specName}}" -ResourceGroupName "${{inputs.resourceGroup}}"
              Write-Host "Version: $version"
              New-AzTemplateSpec -Name "${{inputs.specName}}" -Version $version -ResourceGroupName "${{inputs.resourceGroup}}" -Location "westeurope" -TemplateFile ".\${{inputs.specFileName}}"
-       - name: Check versionnumber
-         uses: azure/powershell@v2
-         id: calculate
-         with:
-           inlineScript: |
-              .\Get-TemplateSpecVersion.ps1 -TemplateSpecName "${{env.specName}}" -ResourceGroupName "${{inputs.resourceGroup}}"
-           azPSVersion: latest
-       - name: Create / Update template spec
-         uses: azure/powershell@v2
-         with:
-           inlineScript: |
-            New-AzTemplateSpec -Name "${{inputs.specName}}" -Version "${{ steps.calculate.outputs.versionnumber }}" -ResourceGroupName "${{inputs.resourceGroup}}" -Location "westeurope" -TemplateFile ".\${{inputs.specFileName}}"
-           azPSVersion: latest
