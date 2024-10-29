@@ -28,7 +28,7 @@ Param
 )
 
 process {
-    $version = (Get-AzTemplateSpec -Name "$TemplateSpecName" -ResourceGroupName "$ResourceGroupName").Versions
+    $version = (Get-AzTemplateSpec -Name "$TemplateSpecName" -ResourceGroupName "$ResourceGroupName" -ErrorAction SilentlyContinue).Versions
     if ($version) {
         $version = $version[$version.length - 1].Name
         $version = [string]$version
@@ -45,7 +45,7 @@ process {
     else {
         $versionNumber = "0.1"
     }
-
+    
     Write-Output "New versionnumber will be: $($versionNumber)"
     
     return $versionNumber
