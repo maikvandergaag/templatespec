@@ -30,6 +30,7 @@ jobs:
         with:
           specFolder: ${{env.specfolder}}
           specName: ${{env.specName}}
+          specFileName : ${{env.specfilename}}
   deploy:
     needs: build
     environment: prod
