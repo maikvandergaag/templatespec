@@ -28,28 +28,28 @@ inputs:
 runs:
   using: "composite"
   steps:
-       - uses: actions/download-artifact@v2
+       - uses: actions/download-artifact@v4
          name: Download template spec
          with:
              name: ${{inputs.specName}}
-       - uses: actions/download-artifact@v2
+       - uses: actions/download-artifact@v4
          name: Download utility scripts
          with:
              name: ps-${{inputs.specName}}
        - name: Azure Login
-         uses: Azure/login@v1
+         uses: Azure/login@v2
          with:
            creds: '{"clientId":"${{ inputs.clientId }}","clientSecret":"${{ inputs.clientSecret }}","subscriptionId":"${{ inputs.azureSubscription }}","tenantId":"${{ inputs.tenantId }}"}'
            enable-AzPSSession: true
        - name: Check versionnumber
-         uses: azure/powershell@v1
+         uses: azure/powershell@v2
          id: calculate
          with:
            inlineScript: |
               .\Get-TemplateSpecVersion.ps1 -TemplateSpecName "${{env.specName}}" -ResourceGroupName "${{inputs.resourceGroup}}"
            azPSVersion: '6.1.0'
        - name: Create / Update template spec
-         uses: azure/powershell@v1
+         uses: azure/powershell@v2
          with:
            inlineScript: |
             New-AzTemplateSpec -Name "${{inputs.specName}}" -Version "${{ steps.calculate.outputs.versionnumber }}" -ResourceGroupName "${{inputs.resourceGroup}}" -Location "westeurope" -TemplateFile ".\${{inputs.specFileName}}"
