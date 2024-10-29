@@ -45,7 +45,6 @@ process {
     else {
         $versionNumber = "0.1"
     }
-    echo "::set-output name=versionnumber::$versionNumber"
 
     return $versionNumber
 }
