@@ -17,8 +17,8 @@ permissions:
 
 env:
   specName: az-tempspec-certifiedstorage
-  specfolder: './templatespecs/05-certifiedstorage/05-storage'
-  specfilename: 05-storage.json
+  specfolder: './templatespecs/05-certifiedstorage/'
+  specfilename: 05-storage.bicep
   resourcegroup: gaag-rg-specs
 jobs:
   build:

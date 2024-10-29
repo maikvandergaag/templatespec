@@ -7,6 +7,9 @@ inputs:
   specName:
     description: 'Specification name'
     required: true
+  specFileName:
+    description: 'The files name of the spec'
+    required: true
 runs:
   using: "composite"
   steps:
@@ -16,18 +19,13 @@ runs:
         sudo mv ./bicepinstall /usr/local/bin/bicep
         bicep --help
       shell: bash
-    - run:  bicep build ${{inputs.specFolder}}.bicep
+    - run:  bicep build ${{inputs.specFolder}}${{inputs.specFileName}}
       shell: bash
     - name: Archive production artifacts
       uses: actions/upload-artifact@v4
       with:
         name: ${{inputs.specName}}
-        path: ${{inputs.specFolder}}.json
-    - name: Archive production artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: ${{inputs.specName}}
-        path: ${{inputs.specFolder}}.bicep
+        path: ${{inputs.specFolder}}
     - name: Archive production scripts
       uses: actions/upload-artifact@v4
       with:
