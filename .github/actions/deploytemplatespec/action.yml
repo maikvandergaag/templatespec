@@ -43,6 +43,12 @@ runs:
            tenant-id: ${{ inputs.tenantId }}
            subscription-id: ${{ inputs.azureSubscription }}
            enable-AzPSSession: true
+       - name: List Resource Groups
+         uses: azure/powershell@v2
+         with:
+           azPSVersion: latest
+           inlineScript: |
+             Get-AzResourceGroup | ft 
        - name: Check versionnumber
          uses: azure/powershell@v2
          id: calculate
