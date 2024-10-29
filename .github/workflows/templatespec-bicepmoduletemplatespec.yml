@@ -17,7 +17,7 @@ permissions:
 env:
   specName: az-tempspec-bicepmodulestorage
   specfolder: './templatespecs/04-bicepmoduletemplatespec/'
-  specfilename: 04-bicepmoduletemplatespec.bicep
+  specfilename: 04-bicepmoduletemplatespec
   resourcegroup: gaag-rg-specs
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
         with:
           specFolder: ${{env.specfolder}}
           specName: ${{env.specName}}
-          specFileName : ${{env.specfilename}}
+          specFileName : ${{env.specfilename}}.bicep
   deploy:
     environment: prod
     needs: build
@@ -41,7 +41,7 @@ jobs:
          with:
            specFolder: ${{env.specfolder}}
            specName: ${{env.specName}}
-           resourceGroup: ${{env.resourcegroup}}
+           resourceGroup: ${{env.resourcegroup}}.json
            specFileName : ${{env.specfilename}}
            clientId: ${{ secrets.AZURE_CLIENT_ID }}
            tenantId: ${{ secrets.AZURE_TENANT_ID }}
