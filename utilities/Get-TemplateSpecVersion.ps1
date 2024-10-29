@@ -45,8 +45,7 @@ process {
     else {
         $versionNumber = "0.1"
     }
-    
-    Write-Output "New versionnumber will be: $($versionNumber)"
-    
+    echo "::set-output name=versionnumber::$versionNumber"
+
     return $versionNumber
 }

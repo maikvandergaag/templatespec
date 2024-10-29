@@ -51,6 +51,8 @@ runs:
              Get-AzResourceGroup | ft 
              $version = .\Get-TemplateSpecVersion.ps1 -TemplateSpecName "${{env.specName}}" -ResourceGroupName "${{inputs.resourceGroup}}"
              Write-Host "Version: $version"
+
+             New-AzTemplateSpec -Name "${{inputs.specName}}" -Version "${{version}}" -ResourceGroupName "${{inputs.resourceGroup}}" -Location "westeurope" -TemplateFile ".\${{inputs.specFileName}}"
        - name: Check versionnumber
          uses: azure/powershell@v2
          id: calculate
