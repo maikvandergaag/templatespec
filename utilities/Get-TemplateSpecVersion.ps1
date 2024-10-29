@@ -28,7 +28,7 @@ Param
 )
 
 process {
-    $version = (Get-AzTemplateSpec -Name "$TemplateSpecName" -ResourceGroupName "$ResourceGroupName" -ErrorAction SilentlyContinue).Versions
+    $version = (Get-AzTemplateSpec -Name "$TemplateSpecName" -ResourceGroupName "$ResourceGroupName").Versions
     if ($version) {
         $version = $version[$version.length - 1].Name
         $version = [string]$version
