@@ -39,7 +39,9 @@ runs:
        - name: Azure Login
          uses: Azure/login@v2
          with:
-           creds: '{"clientId":"${{ inputs.clientId }}","clientSecret":"${{ inputs.clientSecret }}","subscriptionId":"${{ inputs.azureSubscription }}","tenantId":"${{ inputs.tenantId }}"}'
+           client-id: ${{ inputs.clientId }}
+           tenant-id: ${{ inputs.tenantId }}
+           subscription-id: ${{ inputs.azureSubscription }}
            enable-AzPSSession: true
        - name: Check versionnumber
          uses: azure/powershell@v2
